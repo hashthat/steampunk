@@ -19,7 +19,7 @@ def main():
 
 def process_pdf(uploaded_file):
     try:
-        pdf_reader = PyPDF2.PdfFileReader(uploaded_file)
+        pdf_reader = PyPDF2.PdfReader(uploaded_file)
         all_text = ""
         for page_num in range(pdf_reader.getNumPages()):
             page = pdf_reader.getPage(page_num)
