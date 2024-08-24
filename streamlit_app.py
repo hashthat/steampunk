@@ -1,5 +1,5 @@
 import streamlit as st
-import PyPDF2
+from PyPDF2 import PdfReader
 import logging
 from dotenv import load_dotenv
 import os
@@ -31,10 +31,10 @@ def main():
 
 def process_pdf(uploaded_file):
     try:
-        pdf_reader = PyPDF2.PdfFileReader(uploaded_file)
+        pdf_reader = PdfReader(uploaded_file)
         all_text = ""
-        for page_num in range(pdf_reader.getNumPages()):
-            page = pdf_reader.getPage(page_num)
+        for page_num in range(len(pdf_reader.pages)):
+            page = pdf_reader.pages[page_num]
             all_text += page.extract_text()
 
         st.write(f"Text from {uploaded_file.name}:")
