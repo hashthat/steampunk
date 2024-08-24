@@ -1,12 +1,19 @@
 import streamlit as st
 import PyPDF2
 import logging
+from dotenv import load_dotenv
+import os
 
 def main():
+    load_dotenv()  # Load environment variables from .env file
+
     st.set_page_config(page_title="Chatting is fun when you get to chat with your favorite books!", page_icon=":books:")
 
     st.header("Chat with multiple PDFs! :books:")
     query = st.text_input("Ask about the current document:")
+
+    api_key = os.getenv("API_KEY")  # Access your environment variable
+    st.sidebar.write(f"Using API Key: {api_key}")  # Optional: Display the key (for testing purposes)
 
     with st.sidebar:
         st.subheader("Your Docs")
